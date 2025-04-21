@@ -1,0 +1,6 @@
+with-contenv
+s6-envuidgid docker
+if { /opt/php/bin/php /var/www/html/artisan config:cache }
+if { /opt/php/bin/php /var/www/html/artisan event:cache }
+if { /opt/php/bin/php /var/www/html/artisan route:cache }
+/opt/php/bin/php /var/www/html/artisan view:cache

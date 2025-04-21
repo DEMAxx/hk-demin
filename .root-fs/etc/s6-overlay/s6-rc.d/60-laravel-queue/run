@@ -1,0 +1,13 @@
+#!/command/execlineb -P
+with-contenv
+s6-envuidgid docker
+importas -D "" -u QUEUE_DEV QUEUE_DEV
+importas -D "" -u REDIS_QUEUE REDIS_QUEUE
+ifelse { eltest ${QUEUE_DEV} = "true" }
+{
+    foreground { echo "Starting to listen queue" }
+    /opt/php/bin/php /var/www/html/artisan queue:listen --queue=default
+}
+foreground { echo "Starting to work on queue ${REDIS_QUEUE}" }
+/opt/php/bin/php /var/www/html/artisan queue:work --name="${REDIS_QUEUE}" --queue="${REDIS_QUEUE}" --tries=3 --backoff=3
+--timeout=120 --max-jobs=100

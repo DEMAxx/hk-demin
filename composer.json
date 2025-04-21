@@ -1,0 +1,91 @@
+{
+  "name": "laravel/laravel",
+  "description": "The Laravel Framework.",
+  "keywords": [
+    "framework",
+    "laravel"
+  ],
+  "license": "MIT",
+  "type": "project",
+  "require": {
+    "php": "^8.3",
+    "vermorag/laravel-prometheus-exporter": "^4.1",
+    "flugger/laravel-responder": "^3.4",
+    "guzzlehttp/guzzle": "^7.9",
+    "laravel/framework": "^11.21",
+    "laravel/octane": "^2.5",
+    "laravel/telescope": "^5.2",
+    "spatie/laravel-data": "^4.8",
+    "spatie/php-structure-discoverer": "^2.2",
+    "firebase/php-jwt": "^6.10",
+    "ext-json": "*",
+    "ext-pgsql": "*",
+    "doctrine/dbal": "^3.0",
+    "laravel/tinker": "^2.0",
+    "laravel/ui": "^4.0",
+    "spatie/data-transfer-object": "^1.13",
+    "spatie/laravel-html": "^3.3",
+    "ext-redis": "*"
+  },
+  "require-dev": {
+    "barryvdh/laravel-debugbar": "^3.2",
+    "barryvdh/laravel-ide-helper": "^3.5",
+    "brianium/paratest": "^7.4",
+    "fakerphp/faker": "^1.24",
+    "filp/whoops": "^2.0",
+    "mockery/mockery": "^1.6",
+    "nunomaduro/collision": "^8.5",
+    "phpmd/phpmd": "@stable",
+    "phpunit/phpunit": "^11.0",
+    "squizlabs/php_codesniffer": "^3.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/",
+      "Database\\Factories\\": "database/factories/",
+      "Database\\Seeders\\": "database/seeders/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "dont-discover": [
+        "laravel/telescope"
+      ]
+    }
+  },
+  "scripts": {
+    "dumphelpers": [
+      "@php artisan ide-helper:generate",
+      "@php artisan ide-helper:meta"
+    ],
+    "kg": [
+      "@php artisan key:generate --ansi"
+    ],
+    "post-root-package-install": [
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    ],
+    "post-create-project-cmd": [
+      "@php artisan key:generate"
+    ],
+    "post-autoload-dump": [
+      "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+      "@php artisan package:discover --ansi",
+      "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+    ],
+    "test": "./vendor/bin/phpunit --configuration phpunit.xml --coverage-text --colors=never > unittest.log",
+    "check-style": "./vendor/bin/phpcs --standard=PSR12 app/ tests/",
+    "fix-style": "./vendor/bin/phpcbf --standard=PSR12 app/ tests/"
+  },
+  "config": {
+    "preferred-install": "dist",
+    "sort-packages": true,
+    "optimize-autoloader": true
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}
