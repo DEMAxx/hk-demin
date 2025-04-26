@@ -7,7 +7,7 @@ services:
     volumes:
       - ./:/var/www/html/
     ports:
-      - 9901:80
+      - "80:8080"
     networks:
       - hk-demin
     environment:
@@ -18,7 +18,10 @@ services:
     volumes:
       - ./docker/data:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - "5432:5432"
+    user: "${DOCKER_UID}:${DOCKER_GID}"
+    env_file:
+      - .env
     environment:
       - POSTGRES_DB=${DB_DATABASE}
       - POSTGRES_USER=${DB_USERNAME}
@@ -28,6 +31,7 @@ services:
 
   redis:
     image: redis:4.0.14
+    user: "${DOCKER_UID}:${DOCKER_GID}"
     ports:
       - ${REDIS_PORT}:6379
     env_file:
@@ -38,7 +42,3 @@ services:
 networks:
   hk-demin:
     driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 192.168.221.0/28

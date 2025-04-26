@@ -1,0 +1,16 @@
+.container {
+    max-width: 960px;
+}
+
+.lh-condensed { line-height: 1.25; }
+.lh-150{ line-height: 1.5; }
+
+.item-line { border-left: medium solid #007bff; padding-left: 1em; width: 100%;}
+.item-line:nth-child(odd) { border-left-color: #e83e8c; }
+
+.fs-400 { font-size: 400%; }
+.fs-200 { font-size: 200%; }
+.fs-150 { font-size: 150%; }
+
+.w-fix-160 {width: 160px;}
+.w-fix-135 {width: 135px;}

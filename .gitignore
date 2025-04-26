@@ -1,5 +1,6 @@
 /vendor/
 node_modules/
+docker/
 npm-debug.log
 yarn-error.log
 
