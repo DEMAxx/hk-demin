@@ -20,7 +20,6 @@
 
             <div class="poverh">
                 <h2>СЕРВИС<br />ИНТЕГРАЦИИ</h2>
-                <h3>СДЭК и InSales</h3>
                 <br />
                 <a href="{{ route('web.about') }}" class="yellow-but btn">Узнать больше</a>
             </div>

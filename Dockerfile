@@ -37,6 +37,24 @@ FROM trafex/php-nginx:3.6.0
 ARG DOCKER_GID
 ARG DOCKER_UID
 
+USER root
+
+RUN apk add --no-cache postgresql-dev \
+    php83-pdo_pgsql \
+    php83-pdo \
+    php83-redis \
+    php83-pgsql \
+    php83-bcmath \
+    php83-zip \
+    php83-openssl \
+    php83-sodium \
+    php83-xml \
+    php83-curl
+
+USER nobody
+
+COPY --from=builder /usr/local/etc/php/conf.d /usr/local/etc/php/conf.d
+
 COPY --chown=nginx --from=builder /app /var/www/html
 
 COPY --chown=root:root .root-fs /
